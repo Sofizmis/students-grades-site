@@ -25,11 +25,10 @@ try {
     // Get all grades with student and teacher names
     $stmt = $database->query("
         SELECT g.*, 
-               s.name as student_name, s.surname as student_surname, s.patronymic as student_patronymic,
-               t.name as teacher_name, t.surname as teacher_surname, t.patronymic as teacher_patronymic
+               s.name as student_name, s.surname as student_surname, s.patronymic as student_patronymic
         FROM grades g 
         JOIN users s ON g.student_id = s.id 
-        JOIN users t ON g.teacher_id = t.id 
+        WHERE g.teacher_id = :teacher_id 
         ORDER BY g.created_at DESC
     ");
     $grades = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -181,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Все оценки</h5>
+                        <h5>Мои оценки</h5>
                     </div>
                     <div class="card-body">
                         <?php if (empty($grades)): ?>
