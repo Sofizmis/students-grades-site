@@ -10,9 +10,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 try {
     $host = 'localhost';
     $port = '5432';
-    $dbname = 'learning_platform';
+    $dbname = 'название_вашей_бд';
     $username = 'postgres';
-    $password_db = '15212504Ksi!';
+    $password_db = 'ваш_пароль';
 
     $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
     $database = new PDO($dsn, $username, $password_db);
